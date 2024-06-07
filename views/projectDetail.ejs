@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= project.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Project: <%= project.name %></h1>
-    <p><%= project.description %></p>
+    <header class="header">
+        <h1 class="project-title"><%= project.name %></h1>
+        <p class="project-description"><%= project.description %></p>
+    </header>
 
-    <h2>Issues</h2>
+    <section class="issues-section">
+        <h2 class="section-title">Issues</h2>
 
-    <form action="/projects/<%= project._id %>" method="get">
-        <input type="text" name="search" placeholder="Search issues" value="<%= searchQuery || '' %>">
-        <button type="submit">Search</button>
-    </form>
+        <form action="/projects/<%= project._id %>" method="get" class="search-form">
+            <input type="text" name="search" placeholder="Search issues" value="<%= searchQuery || '' %>" class="search-input">
+            <button type="submit" class="search-button">Search</button>
+        </form>
 
-    <ul>
-        <% issues.forEach(issue => { %>
-            <li>
-                <h3><%= issue.title %></h3>
-                <p><%= issue.description %></p>
-            </li>
-        <% }); %>
-    </ul>
+        <ul class="issue-list">
+            <% issues.forEach(issue => { %>
+                <li class="issue-item">
+                    <h3 class="issue-title"><%= issue.title %></h3>
+                    <p class="issue-description"><%= issue.description %></p>
+                </li>
+            <% }); %>
+        </ul>
 
-    <a href="/projects/<%= project._id %>/issues/new">Create New Issue</a>
+        <a href="/projects/<%= project._id %>/issues/new" class="create-issue-link">Create New Issue</a>
+    </section>
 </body>
 </html>
